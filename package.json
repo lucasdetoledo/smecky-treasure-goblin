@@ -1,0 +1,22 @@
+{
+  "name": "smecky-treasure-goblin",
+  "version": "1.0.0",
+  "description": "A cheeky loot generator.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lucas deToledo",
+  "license": "MIT",
+  "dependencies": {
+    "app-root-path": "^2.0.1",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "lodash": "^4.17.4",
+    "pg": "^6.1.5",
+    "sequelize": "^3.30.4",
+    "smecky-dicebag": "^1.0.0",
+    "winston": "^2.3.1"
+  }
+}

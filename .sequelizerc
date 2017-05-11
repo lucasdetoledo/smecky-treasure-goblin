@@ -1,0 +1,8 @@
+var AppRoot = require('app-root-path');
+
+module.exports = {
+  'config': `${AppRoot}/db/sequelizeConfig.json`,
+  'migrations-path': `${AppRoot}/db/migrations`,
+  'models-path': `${AppRoot}/db/models`,
+  'seeders-path': `${AppRoot}/db/seeders`
+}
