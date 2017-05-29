@@ -13,10 +13,16 @@
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "gulp": "^3.9.1",
+    "gulp-env": "^0.4.0",
+    "gulp-mocha": "^4.3.1",
+    "gulp-nodemon": "^2.2.1",
     "lodash": "^4.17.4",
     "pg": "^6.1.5",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
     "sequelize": "^3.30.4",
-    "smecky-dicebag": "^1.0.0",
+    "smecky-dicebag": "^1.0.1",
     "winston": "^2.3.1"
   }
 }

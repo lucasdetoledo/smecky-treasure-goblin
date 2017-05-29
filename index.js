@@ -9,10 +9,12 @@ App.set('view engine', 'pug')
 App.use(BodyParser.json())
 App.use(Express.static(`${AppRoot}/public`))
 
-// let armorRouter = require(`${AppRoot}/app/routes/armorRouter)
 let mainRouter = require(`${AppRoot}/app/routes/mainRouter`)
+let hoardRouter = require(`${AppRoot}/app/routes/hoardRouter`)
 
-// App.use('/armor', armorRouter)
 App.use('/', mainRouter)
+App.use('/hoard', hoardRouter)
 
-App.listen(3000)
+App.listen(process.env.APP_PORT, () => {
+  console.log(`smecky-hoarder listening on port ${process.env.APP_PORT}`)
+})

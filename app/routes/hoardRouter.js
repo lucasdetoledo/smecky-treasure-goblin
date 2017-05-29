@@ -2,8 +2,8 @@
 const AppRoot = require('app-root-path')
 const Express = require('express')
 const Router = Express.Router()
-const MainController = require(`${AppRoot}/app/controllers/mainController`)
+const hoardController = require(`${AppRoot}/app/controllers/hoardController`)
 
-Router.get('/', MainController.home)
+Router.get('/', hoardController.get)
 
 module.exports = Router
