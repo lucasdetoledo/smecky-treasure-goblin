@@ -1,0 +1,22 @@
+#foot-container {
+  height: 100%;
+  margin: 0 15px 0 15px;
+}
+
+#foot-submit-button {}
+
+#foot-roll-log-button {}
+
+#foot-button-container {
+  height: 100%;
+  margin: 0 15px 0 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.foot-button {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

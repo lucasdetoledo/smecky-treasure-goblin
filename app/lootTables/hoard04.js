@@ -138,7 +138,7 @@ module.exports = () => {
       let r = Dicebag.d4(2, { verbose: true })
       roll_log.push(`=> 2d4 (${r.roll_log}) 25gp Art Objects`)
       for (let i = 0; i < r.sum; ++i) {
-        gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('artobjects?value=25')))
+        art_object_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('artobjects?value=25')))
       }
       r = Dicebag.d4(1, { verbose: true })
       roll_log.push(`=> 1d4 (${r.roll_log}) items from Table C`)
@@ -160,7 +160,7 @@ module.exports = () => {
       let r = Dicebag.d4(2, { verbose: true })
       roll_log.push(`=> 2d4 (${r.roll_log}) 25gp Art Objects`)
       for (let i = 0; i < r.sum; ++i) {
-        gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('artobjects?value=25')))
+        art_object_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('artobjects?value=25')))
       }
       r = Dicebag.d4(1, { verbose: true })
       roll_log.push(`=> 1d4 (${r.roll_log}) items from Table F`)
@@ -184,7 +184,7 @@ module.exports = () => {
       let r = Dicebag.d4(2, { verbose: true })
       roll_log.push(`=> 2d4 (${r.roll_log}) 25gp Art Objects`)
       for (let i = 0; i < r.sum; ++i) {
-        gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('artobjects?value=25')))
+        art_object_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('artobjects?value=25')))
       }
       roll_log.push(`=> 1 item from Table G`)
       for (let i = 0; i < Dicebag.roll(1, 1); ++i) {
@@ -234,7 +234,7 @@ module.exports = () => {
     rollCoins(loot_map, roll_log)
     return rollLoot(loot_map, roll_log).then(() => {
       return {
-        loot: loot_map,
+        loot_list: loot_map,
         log: roll_log
       }
     }).catch((e) => {

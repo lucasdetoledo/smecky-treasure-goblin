@@ -40,6 +40,9 @@ module.exports = () => {
     } else if (table_roll.sum < 82) {
       return 'magicitems?name=Potion of Fire Giant Strength'
     } else if (table_roll.sum < 85) {
+      /*
+        TODO: Fix this
+       */
       return "magicitems?name=Quaal's Feather Token"
     } else if (table_roll.sum < 88) {
       return 'magicitems?name=Scroll of Protection'
