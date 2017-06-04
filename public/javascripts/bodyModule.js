@@ -1,5 +1,5 @@
 'use strict'
-/* global */
+/* global stateManager */
 
 var bodyModule = (function () { // eslint-disable-line no-unused-vars
  // ----------------------------------------------------------------Module Scope Variables
@@ -51,7 +51,8 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
   }
   var config, init, set_jquery_map, type_dropdown_click, type_dropdown_horde_click,
     type_dropdown_individual_click, level_dropdown_click, level_dropdown_four_click,
-    level_dropdown_etc_click, setLootList, toggleInfoDropdown
+    level_dropdown_etc_click, setLootList, toggleInfoDropdown, setDropdownErrorColor,
+    resetDropdownErrorColor
   // ----------------------------------------------------------------------------------end
 
   // ----------------------------------------------------------------------Private Methods
@@ -81,31 +82,77 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
     will then be passed into API manager on shellModule
    */
   type_dropdown_click = function () {
-    jqueryMap.$body_type_dropdown_content.slideToggle()
+    let currentlyExtended = stateManager.get('currentlyExtended')
+    if ((!currentlyExtended || currentlyExtended === 'type_dropdown') && !stateManager.get('isAnimating')) {
+      stateManager.set('isAnimating', true)
+      return new Promise(function (resolve, reject) {
+        jqueryMap.$body_type_dropdown_content.slideToggle()
+        stateManager.set('isAnimating', false)
+        if (!currentlyExtended) {
+          stateManager.set('currentlyExtended', 'type_dropdown')
+        } else {
+          stateManager.set('currentlyExtended', null)
+        }
+        return resolve()
+      })
+    }
+    return Promise.resolve()
   }
 
   type_dropdown_horde_click = function () {
     jqueryMap.$body_type_dropdown_placeholder.html('Horde')
+    stateManager.set('type', 'horde')
   }
 
   type_dropdown_individual_click = function () {
     jqueryMap.$body_type_dropdown_placeholder.html('Individual')
+    stateManager.set('type', 'individual')
   }
 
   level_dropdown_click = function () {
-    jqueryMap.$body_level_dropdown_content.slideToggle()
+    let currentlyExtended = stateManager.get('currentlyExtended')
+    if ((!currentlyExtended || currentlyExtended === 'level_dropdown') && !stateManager.get('isAnimating')) {
+      stateManager.set('isAnimating', true)
+      return new Promise(function (resolve, reject) {
+        jqueryMap.$body_level_dropdown_content.slideToggle()
+        stateManager.set('isAnimating', false)
+        if (!currentlyExtended) {
+          stateManager.set('currentlyExtended', 'level_dropdown')
+        } else {
+          stateManager.set('currentlyExtended', null)
+        }
+        return resolve()
+      })
+    }
+    return Promise.resolve()
   }
 
   level_dropdown_four_click = function () {
     jqueryMap.$body_level_dropdown_placeholder.html('0 - 4')
+    stateManager.set('level', '0-4')
   }
 
   level_dropdown_etc_click = function () {
     jqueryMap.$body_level_dropdown_placeholder.html('etc')
+    stateManager.set('level', 'etc')
   }
   // ----------------------------------------------------------------------------------end
 
   // -----------------------------------------------------------------------Public Methods
+  setDropdownErrorColor = function (val) {
+    if (val === 'type') {
+      jqueryMap.$body_type_dropdown_placeholder.css('color', 'red')
+    }
+    if (val === 'level') {
+      jqueryMap.$body_level_dropdown_placeholder.css('color', 'red')
+    }
+  }
+
+  resetDropdownErrorColor = function () {
+    jqueryMap.$body_type_dropdown_placeholder.css('color', 'black')
+    jqueryMap.$body_level_dropdown_placeholder.css('color', 'black')
+  }
+
   setLootList = function (loot_list) {
     jqueryMap.$body_loot_list_container.empty()
     jqueryMap.$body_loot_list_container.append('<div class="body-loot-header">Coins</div>')
@@ -215,5 +262,7 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
     config: config,
     init: init,
     setLootList: setLootList,
+    setDropdownErrorColor: setDropdownErrorColor,
+    resetDropdownErrorColor: resetDropdownErrorColor
   }
 }())

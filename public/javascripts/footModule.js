@@ -1,5 +1,5 @@
 'use strict'
-/* global PubSub */
+/* global PubSub, stateManager */
 
 var footModule = (function () { // eslint-disable-line no-unused-vars
   // ---------------------------------------------------------------Module Scope Variables
@@ -41,7 +41,16 @@ var footModule = (function () { // eslint-disable-line no-unused-vars
 
   // -------------------------------------------------------------------------------events
   submit_click = function () {
-    PubSub.publish('foot_submit_click', {})
+    if (!stateManager.get('currentlyExtended') && !stateManager.get('isAnimating')) {
+      jqueryMap.$foot_submit_button.css('color', 'black')
+      if (!stateManager.get('type') || !stateManager.get('level')) {
+        jqueryMap.$foot_submit_button.css('color', 'red')
+      }
+      PubSub.publish('foot_submit_click', {
+        type: stateManager.get('type'),
+        level: stateManager.get('level')
+      })
+    }
   }
 
   roll_log_click = function () {

@@ -1,5 +1,5 @@
 'use strict'
-/* global $, dataManager */
+/* global $, dataManager, stateManager */
 var modalModule = (function () { // eslint-disable-line no-unused-vars
   // ---------------------------------------------------------------Module Scope Variables
   var configMap = {
@@ -41,22 +41,29 @@ var modalModule = (function () { // eslint-disable-line no-unused-vars
   }
 
   extendRollLogAsync = function () {
-    return new Promise(function (resolve, reject) {
-      let roll_log = dataManager.get('roll_log')
-      if (roll_log && roll_log.length > 0) {
-        jqueryMap.$container.empty()
-        jqueryMap.$container.css('visibility', 'visible')
-        jqueryMap.$container.append('<div id="roll-log-modal"></div>')
-        jqueryMap.$container.animate({ width: '100vw' }, 600, function () {
-          let roll_log_modal = $('#roll-log-modal')
-          for (let i = 0; i < roll_log.length; ++i) {
-            roll_log_modal.append('<div>' + roll_log[i] + '</div>')
-          }
-          set_jquery_map()
-        })
-      }
-      resolve(true)
-    })
+    let currentlyExtended = stateManager.get('currentlyExtended')
+    if ((!currentlyExtended || currentlyExtended === 'roll_log_modal') && !stateManager.get('isAnimating')) {
+      stateManager.set('isAnimating', true)
+      return new Promise(function (resolve, reject) {
+        let roll_log = dataManager.get('roll_log')
+        if (roll_log && roll_log.length > 0) {
+          jqueryMap.$container.empty()
+          jqueryMap.$container.css('visibility', 'visible')
+          jqueryMap.$container.append('<div id="roll-log-modal"></div>')
+          jqueryMap.$container.animate({ width: '100vw' }, 600, function () {
+            let roll_log_modal = $('#roll-log-modal')
+            for (let i = 0; i < roll_log.length; ++i) {
+              roll_log_modal.append('<div>' + roll_log[i] + '</div>')
+            }
+            set_jquery_map()
+          })
+        }
+        stateManager.set('isAnimating', false)
+        stateManager.set('currentlyExtended', 'roll_log_modal')
+        return resolve()
+      })
+    }
+    return Promise.resolve()
   }
 
   retractRollLogAsync = function () {
@@ -66,6 +73,7 @@ var modalModule = (function () { // eslint-disable-line no-unused-vars
         jqueryMap.$container.empty()
         set_jquery_map()
         stateMap.current_modal = null
+        stateManager.set('currentlyExtended', null)
         resolve(true)
       })
     })

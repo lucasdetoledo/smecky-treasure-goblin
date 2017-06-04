@@ -1,5 +1,6 @@
 'use strict'
-/* global PubSub, apiManager, dataManager, headModule, bodyModule, footModule, modalModule */
+/* global PubSub, apiManager, dataManager, headModule, bodyModule, footModule, modalModule,
+   stateManager */
 var shellModule = (function () { // eslint-disable-line no-unused-vars
   // ---------------------------------------------------------------Module Scope Variables
   var configMap = {
@@ -36,8 +37,20 @@ var shellModule = (function () { // eslint-disable-line no-unused-vars
   // ----------------------------------------------------------------------------------end
 
   // -------------------------------------------------------------------------------PubSub
-  foot_submit_sub = function () {
-    apiManager.getHorde(null /* TODO: Put an actual level in here */).then(function (horde_data) {
+  foot_submit_sub = function (name, data) {
+    bodyModule.resetDropdownErrorColor()
+    if (!data.type) {
+      console.log('not type')
+      bodyModule.setDropdownErrorColor('type')
+    }
+    if (!data.level) {
+      console.log('not level')
+      bodyModule.setDropdownErrorColor('level')
+    }
+    if (!data.type || !data.level) {
+      return
+    }
+    apiManager.getHorde(stateManager.get('level')).then(function (horde_data) {
       bodyModule.setLootList(dataManager.get('loot_list'))
     })
   }
@@ -57,6 +70,7 @@ var shellModule = (function () { // eslint-disable-line no-unused-vars
     stateMap.$container = input_map.$container
     input_map.$container.html(configMap.html)
     set_jquery_map()
+    stateManager.config({ isAnimating: false, currentlyExtended: null })
     apiManager.config({
       horde_url: 'http://localhost:3612/hoard'
     })

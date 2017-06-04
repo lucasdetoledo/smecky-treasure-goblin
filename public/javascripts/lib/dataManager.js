@@ -15,7 +15,7 @@ var dataManager = (function () { // eslint-disable-line no-unused-vars
   }
 
   set = function (key, val) {
-    stateMap[key] = val;
+    stateMap[key] = val
   }
 
   init = function (input_map) {}
