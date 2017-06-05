@@ -15,6 +15,6 @@ let hoardRouter = require(`${AppRoot}/app/routes/hoardRouter`)
 App.use('/', mainRouter)
 App.use('/hoard', hoardRouter)
 
-App.listen(process.env.APP_PORT, () => {
+App.listen(3612, () => {
   console.log(`smecky-hoarder listening on port ${process.env.APP_PORT}`)
 })
