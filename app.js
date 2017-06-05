@@ -1,6 +1,6 @@
 'use strict'
 const AppRoot = require('app-root-path')
-const Express = require('Express')
+const Express = require('express')
 const BodyParser = require('body-parser')
 const App = Express()
 
