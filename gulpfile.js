@@ -30,7 +30,7 @@ Gulp.task('set-Env', () => {
 Gulp.task('serve', [ 'set-Env' ], () => {
   'use strict'
   let options = {
-    script: 'index.js',
+    script: 'app.js',
     delayTime: 1,
     watch: jsFiles
   }

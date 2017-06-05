@@ -2,7 +2,7 @@
   "name": "smecky-treasure-goblin",
   "version": "1.0.0",
   "description": "A cheeky loot generator.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
