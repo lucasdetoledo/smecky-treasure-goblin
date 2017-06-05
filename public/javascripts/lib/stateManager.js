@@ -1,7 +1,7 @@
 'use strict'
 /* global */
 var stateManager = (function () { // eslint-disable-line no-unused-vars
-  // -----------------------------------------------------Module Scope Variables
+  // ---------------------------------------------------------------Module Scope Variables
   var stateMap = {
     isAnimating: null,
     currentlyExtended: null,
@@ -9,12 +9,12 @@ var stateManager = (function () { // eslint-disable-line no-unused-vars
     type: null
   }
   var config, get, set
-  // ------------------------------------------------------------------------end
+  // ----------------------------------------------------------------------------------end
 
-  // ------------------------------------------------------------Private Methods
-  // ------------------------------------------------------------------------end
+  // ----------------------------------------------------------------------Private Methods
+  // ----------------------------------------------------------------------------------end
 
-  // -------------------------------------------------------------Public Methods
+  // -----------------------------------------------------------------------Public Methods
   get = function (val) {
     return stateMap[val]
   }
@@ -31,7 +31,7 @@ var stateManager = (function () { // eslint-disable-line no-unused-vars
     stateMap.isAnimating = input_map.isAnimating
     stateMap.currentlyExtended = input_map.isExtended
   }
-  // ------------------------------------------------------------------------end
+  // ----------------------------------------------------------------------------------end
 
   return {
     config: config,

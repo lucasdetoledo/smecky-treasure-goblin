@@ -1,17 +1,17 @@
 'use strict'
 /* global $, Promise, dataManager */
 var apiManager = (function () { // eslint-disable-line no-unused-vars
-  // -----------------------------------------------------Module Scope Variables
+  // ---------------------------------------------------------------Module Scope Variables
   var configMap = {
     horde_url: null
   }
   var config, getHorde
-  // ------------------------------------------------------------------------end
+  // ----------------------------------------------------------------------------------end
 
-  // ------------------------------------------------------------Private Methods
-  // ------------------------------------------------------------------------end
+  // ----------------------------------------------------------------------Private Methods
+  // ----------------------------------------------------------------------------------end
 
-  // -------------------------------------------------------------Public Methods
+  // -----------------------------------------------------------------------Public Methods
   getHorde = function (level) {
     return new Promise(function (resolve, reject) {
       $.ajax({
@@ -30,7 +30,7 @@ var apiManager = (function () { // eslint-disable-line no-unused-vars
   config = function (input_map) {
     configMap.horde_url = input_map.horde_url
   }
-  // ------------------------------------------------------------------------end
+  // ----------------------------------------------------------------------------------end
 
   return {
     config: config,

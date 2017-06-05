@@ -40,11 +40,9 @@ var shellModule = (function () { // eslint-disable-line no-unused-vars
   foot_submit_sub = function (name, data) {
     bodyModule.resetDropdownErrorColor()
     if (!data.type) {
-      console.log('not type')
       bodyModule.setDropdownErrorColor('type')
     }
     if (!data.level) {
-      console.log('not level')
       bodyModule.setDropdownErrorColor('level')
     }
     if (!data.type || !data.level) {
@@ -57,7 +55,6 @@ var shellModule = (function () { // eslint-disable-line no-unused-vars
 
   foot_log_sub = function () {
     modalModule.toggleRollLogAsync().then(() => {
-      console.log('foo')
     })
   }
   // ----------------------------------------------------------------------------------end
@@ -84,7 +81,6 @@ var shellModule = (function () { // eslint-disable-line no-unused-vars
     footModule.init({ $container: jqueryMap.$foot })
     modalModule.config()
     modalModule.init({ $container: jqueryMap.$modal })
-    console.log(jqueryMap.$container.width())
   }
   // ----------------------------------------------------------------------------------end
   return {

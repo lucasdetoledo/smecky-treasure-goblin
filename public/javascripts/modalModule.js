@@ -12,7 +12,7 @@ var modalModule = (function () { // eslint-disable-line no-unused-vars
 
   var jqueryMap = {}
 
-  var config, init, set_jquery_map, extend, retractRollLogAsync, extendRollLogAsync,
+  var config, init, set_jquery_map, retractRollLogAsync, extendRollLogAsync,
     toggleRollLogAsync
   // ----------------------------------------------------------------------------------end
 
@@ -32,10 +32,8 @@ var modalModule = (function () { // eslint-disable-line no-unused-vars
   // -----------------------------------------------------------------------Public Methods
   toggleRollLogAsync = function () {
     if (jqueryMap.$roll_log_modal && jqueryMap.$roll_log_modal.width() > 0) {
-      console.log('foo')
       return retractRollLogAsync()
     } else {
-      console.log('bar')
       return extendRollLogAsync()
     }
   }
@@ -94,7 +92,6 @@ var modalModule = (function () { // eslint-disable-line no-unused-vars
   return {
     config: config,
     init: init,
-    extend: extend,
     toggleRollLogAsync: toggleRollLogAsync
   }
 }())

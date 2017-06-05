@@ -77,10 +77,6 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
   // ----------------------------------------------------------------------------------end
 
   // -------------------------------------------------------------------------------events
-  /*
-    TODO: Fix these clicks, they shoudl be setting something on stateManager which
-    will then be passed into API manager on shellModule
-   */
   type_dropdown_click = function () {
     let currentlyExtended = stateManager.get('currentlyExtended')
     if ((!currentlyExtended || currentlyExtended === 'type_dropdown') && !stateManager.get('isAnimating')) {
@@ -93,6 +89,7 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
         } else {
           stateManager.set('currentlyExtended', null)
         }
+        jqueryMap.$body_type_dropdown_placeholder.css('color', 'black')
         return resolve()
       })
     }
@@ -121,6 +118,7 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
         } else {
           stateManager.set('currentlyExtended', null)
         }
+        jqueryMap.$body_level_dropdown_placeholder.css('color', 'black')
         return resolve()
       })
     }
