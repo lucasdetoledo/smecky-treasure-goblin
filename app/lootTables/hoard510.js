@@ -14,27 +14,20 @@ module.exports = () => {
   let rollCoins, rollLoot, roll
 
   rollCoins = (loot_map, roll_log) => {
-    roll_log.push('Rolling Coins')
     let cp_roll, sp_roll, gp_roll, pp_roll
     cp_roll = Dicebag.d6(2, { verbose: true })
     loot_map.coins.cp = cp_roll.sum * 100
-    roll_log.push(`=> 2d6 (${cp_roll.roll_log}) * 100 (${loot_map.coins.cp}) CP`)
     sp_roll = Dicebag.d6(2, { verbose: true })
     loot_map.coins.sp = sp_roll.sum * 1000
-    roll_log.push(`=> 2d6 (${sp_roll.roll_log}) * 1000 (${loot_map.coins.sp}) SP`)
     gp_roll = Dicebag.d6(6, { verbose: true })
     loot_map.coins.gp = gp_roll.sum * 100
-    roll_log.push(`=> 6d6 (${gp_roll.roll_log}) * 100 (${loot_map.coins.gp}) GP`)
     pp_roll = Dicebag.d6(3, { verbose: true })
     loot_map.coins.pp = pp_roll.sum * 10
-    roll_log.push(`=> 3d6 (${pp_roll.roll_log}) * 10 (${loot_map.coins.pp}) PP`)
   }
 
   rollLoot = (loot_map, roll_log) => {
-    roll_log.push('Rolling Gem, Art Objects and Magic Items')
     let table_roll, gemstone_promise_list, art_object_promise_list, magic_item_promise_list
     table_roll = Dicebag.roll(100, 1, { verbose: true })
-    roll_log.push(`=> 1d100 on Treasure Hoard: Challenge 5-10 (${table_roll.roll_log})`)
     gemstone_promise_list = []
     art_object_promise_list = []
     magic_item_promise_list = []
@@ -43,162 +36,229 @@ module.exports = () => {
       // Do nothing
     } else if (table_roll.sum < 11) {
       let r = Dicebag.d4(2, { verbose: true })
-      roll_log.push(`=> 2d4 (${r.roll_log}) 26gp Art Objects`)
       for (let i = 0; i < r.sum; ++i) {
         art_object_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('artobjects?value=25')))
       }
     } else if (table_roll.sum < 17) {
       let r = Dicebag.d6(3, { verbose: true })
-      roll_log.push(`=> 3d6 (${r.roll_log}) 50gp Gemstones`)
       for (let i = 0; i < r.sum; ++i) {
         gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
       }
     } else if (table_roll.sum < 23) {
       let r = Dicebag.d6(3, { verbose: true })
-      roll_log.push(`=> 3d6 (${r.roll_log}) 100gp Gemstones`)
       for (let i = 0; i < r.sum; ++i) {
         gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=100')))
       }
     } else if (table_roll.sum < 29) {
       let r = Dicebag.d4(2, { verbose: true })
-      roll_log.push(`=> 2d4 (${r.roll_log}) 250gp Art Objects`)
       for (let i = 0; i < r.sum; ++i) {
         art_object_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('artobjects?value=250')))
       }
       r = Dicebag.d6(1, { verbose: true })
-      roll_log.push(`=> 1d6 (${r.roll_log}) items from Table A`)
       for (let i = 0; i < r.sum; ++i) {
         magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableA.roll(roll_log))))
       }
-    } else if (table_roll.sum < 53) {
+    } else if (table_roll.sum < 33) {
       let r = Dicebag.d4(2, { verbose: true })
-      roll_log.push(`=> 2d4 (${r.roll_log}) 25gp Art Objects`)
       for (let i = 0; i < r.sum; ++i) {
         art_object_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('artobjects?value=25')))
       }
       r = Dicebag.d6(1, { verbose: true })
-      roll_log.push(`=> 1d6 (${r.roll_log}) items from Table A`)
       for (let i = 0; i < r.sum; ++i) {
         magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableA.roll(roll_log))))
       }
-    } else if (table_roll.sum < 61) {
+    } else if (table_roll.sum < 37) {
       let r = Dicebag.d6(2, { verbose: true })
-      roll_log.push(`=> 2d6 (${r.roll_log}) 50gp Gemstones`)
       for (let i = 0; i < r.sum; ++i) {
         gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
       }
       r = Dicebag.d6(1, { verbose: true })
-      roll_log.push(`=> 1d6 (${r.roll_log}) items from Table A`)
       for (let i = 0; i < r.sum; ++i) {
         magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableA.roll(roll_log))))
       }
-    } else if (table_roll.sum < 66) {
+    } else if (table_roll.sum < 41) {
       let r = Dicebag.d6(2, { verbose: true })
-      roll_log.push(`=> 2d6 ${r.roll_log} 10gp Gemstones`)
       for (let i = 0; i < r.sum; ++i) {
         gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=10')))
       }
       r = Dicebag.d4(1, { verbose: true })
-      roll_log.push(`=> 1d4 (${r.roll_log}) items from Table B`)
       for (let i = 0; i < r.sum; ++i) {
         magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableB.roll(roll_log))))
       }
-    } else if (table_roll.sum < 71) {
+    } else if (table_roll.sum < 45) {
       let r = Dicebag.d4(2, { verbose: true })
-      roll_log.push(`=> 2d4 (${r.roll_log}) 25gp Art Objects`)
       for (let i = 0; i < r.sum; ++i) {
         art_object_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('artobjects?value=25')))
       }
       r = Dicebag.d4(1, { verbose: true })
-      roll_log.push(`=> 1d4 (${r.roll_log}) items from Table B`)
       for (let i = 0; i < r.sum; ++i) {
         magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableB.roll(roll_log))))
       }
-    } else if (table_roll.sum < 76) {
+    } else if (table_roll.sum < 50) {
       let r = Dicebag.d6(2, { verbose: true })
-      roll_log.push(`=> 2d6 (${r.roll_log}) 50gp Gemstones`)
       for (let i = 0; i < r.sum; ++i) {
         gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
       }
       r = Dicebag.d4(1, { verbose: true })
-      roll_log.push(`=> 1d4 (${r.roll_log}) items from Table B`)
       for (let i = 0; i < r.sum; ++i) {
         magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableB.roll(roll_log))))
       }
-    } else if (table_roll.sum < 79) {
+    } else if (table_roll.sum < 55) {
       let r = Dicebag.d6(2, { verbose: true })
-      roll_log.push(`=> 2d6 (${r.roll_log}) 10gp Gemstones`)
       for (let i = 0; i < r.sum; ++i) {
         gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=10')))
       }
       r = Dicebag.d4(1, { verbose: true })
-      roll_log.push(`=> 1d4 (${r.roll_log}) items from Table C`)
       for (let i = 0; i < r.sum; ++i) {
         magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableC.roll(roll_log))))
       }
-    } else if (table_roll.sum < 81) {
+    } else if (table_roll.sum < 60) {
       let r = Dicebag.d4(2, { verbose: true })
-      roll_log.push(`=> 2d4 (${r.roll_log}) 25gp Art Objects`)
       for (let i = 0; i < r.sum; ++i) {
         art_object_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('artobjects?value=25')))
       }
       r = Dicebag.d4(1, { verbose: true })
-      roll_log.push(`=> 1d4 (${r.roll_log}) items from Table C`)
       for (let i = 0; i < r.sum; ++i) {
         magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableC.roll(roll_log))))
       }
-    } else if (table_roll.sum < 86) {
+    } else if (table_roll.sum < 64) {
       let r = Dicebag.d6(2, { verbose: true })
-      roll_log.push(`=> 2d6 (${r.roll_log}) 50gp Gemstones`)
       for (let i = 0; i < r.sum; ++i) {
         gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
       }
       r = Dicebag.d4(1, { verbose: true })
-      roll_log.push(`=> 1d4 (${r.roll_log}) items from Table C`)
       for (let i = 0; i < r.sum; ++i) {
         magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableC.roll(roll_log))))
       }
-    } else if (table_roll.sum < 93) {
+    } else if (table_roll.sum < 67) {
       let r = Dicebag.d4(2, { verbose: true })
-      roll_log.push(`=> 2d4 (${r.roll_log}) 25gp Art Objects`)
       for (let i = 0; i < r.sum; ++i) {
         art_object_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('artobjects?value=25')))
       }
       r = Dicebag.d4(1, { verbose: true })
-      roll_log.push(`=> 1d4 (${r.roll_log}) items from Table F`)
       for (let i = 0; i < r.sum; ++i) {
         magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableF.roll(roll_log))))
       }
-    } else if (table_roll.sum < 98) {
+    } else if (table_roll.sum < 70) {
       let r = Dicebag.d6(2, { verbose: true })
-      roll_log.push(`=> 2d6 (${r.roll_log}) 50gp Gemstones`)
       for (let i = 0; i < r.sum; ++i) {
         gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
       }
       r = Dicebag.d4(1, { verbose: true })
-      roll_log.push(`=> 1d4 (${r.roll_log}) items from Table F`)
       for (let i = 0; i < r.sum; ++i) {
         magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableF.roll(roll_log))))
       }
-    } else if (table_roll.sum < 100) {
+    } else if (table_roll.sum < 73) {
       // roll 2d4 25gp art objects
       // roll once on magic item table g
       let r = Dicebag.d4(2, { verbose: true })
-      roll_log.push(`=> 2d4 (${r.roll_log}) 25gp Art Objects`)
       for (let i = 0; i < r.sum; ++i) {
         art_object_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('artobjects?value=25')))
       }
-      roll_log.push(`=> 1 item from Table G`)
+      for (let i = 0; i < Dicebag.roll(1, 1); ++i) {
+        magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableG.roll(roll_log))))
+      }
+    } else if (table_roll.sum < 75) {
+      let r = Dicebag.d6(2, { verbose: true })
+      for (let i = 0; i < Dicebag.d6(2); ++i) {
+        gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
+      }
+      for (let i = 0; i < Dicebag.roll(1, 1); ++i) {
+        magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableG.roll(roll_log))))
+      }
+    } else if (table_roll.sum < 77) {
+      let r = Dicebag.d6(2, { verbose: true })
+      for (let i = 0; i < Dicebag.d6(2); ++i) {
+        gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
+      }
+      for (let i = 0; i < Dicebag.roll(1, 1); ++i) {
+        magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableG.roll(roll_log))))
+      }
+    } else if (table_roll.sum < 79) {
+      let r = Dicebag.d6(2, { verbose: true })
+      for (let i = 0; i < Dicebag.d6(2); ++i) {
+        gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
+      }
+      for (let i = 0; i < Dicebag.roll(1, 1); ++i) {
+        magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableG.roll(roll_log))))
+      }
+    } else if (table_roll.sum < 80) {
+      let r = Dicebag.d6(2, { verbose: true })
+      for (let i = 0; i < Dicebag.d6(2); ++i) {
+        gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
+      }
+      for (let i = 0; i < Dicebag.roll(1, 1); ++i) {
+        magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableG.roll(roll_log))))
+      }
+    } else if (table_roll.sum < 81) {
+      let r = Dicebag.d6(2, { verbose: true })
+      for (let i = 0; i < Dicebag.d6(2); ++i) {
+        gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
+      }
+      for (let i = 0; i < Dicebag.roll(1, 1); ++i) {
+        magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableG.roll(roll_log))))
+      }
+    } else if (table_roll.sum < 85) {
+      let r = Dicebag.d6(2, { verbose: true })
+      for (let i = 0; i < Dicebag.d6(2); ++i) {
+        gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
+      }
+      for (let i = 0; i < Dicebag.roll(1, 1); ++i) {
+        magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableG.roll(roll_log))))
+      }
+    } else if (table_roll.sum < 89) {
+      let r = Dicebag.d6(2, { verbose: true })
+      for (let i = 0; i < Dicebag.d6(2); ++i) {
+        gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
+      }
+      for (let i = 0; i < Dicebag.roll(1, 1); ++i) {
+        magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableG.roll(roll_log))))
+      }
+    } else if (table_roll.sum < 92) {
+      let r = Dicebag.d6(2, { verbose: true })
+      for (let i = 0; i < Dicebag.d6(2); ++i) {
+        gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
+      }
+      for (let i = 0; i < Dicebag.roll(1, 1); ++i) {
+        magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableG.roll(roll_log))))
+      }
+    } else if (table_roll.sum < 95) {
+      let r = Dicebag.d6(2, { verbose: true })
+      for (let i = 0; i < Dicebag.d6(2); ++i) {
+        gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
+      }
+      for (let i = 0; i < Dicebag.roll(1, 1); ++i) {
+        magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableG.roll(roll_log))))
+      }
+    } else if (table_roll.sum < 97) {
+      let r = Dicebag.d6(2, { verbose: true })
+      for (let i = 0; i < Dicebag.d6(2); ++i) {
+        gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
+      }
+      for (let i = 0; i < Dicebag.roll(1, 1); ++i) {
+        magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableG.roll(roll_log))))
+      }
+    } else if (table_roll.sum < 99) {
+      let r = Dicebag.d6(2, { verbose: true })
+      for (let i = 0; i < Dicebag.d6(2); ++i) {
+        gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
+      }
+      for (let i = 0; i < Dicebag.roll(1, 1); ++i) {
+        magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableG.roll(roll_log))))
+      }
+    } else if (table_roll.sum < 100) {
+      let r = Dicebag.d6(2, { verbose: true })
+      for (let i = 0; i < Dicebag.d6(2); ++i) {
+        gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
+      }
       for (let i = 0; i < Dicebag.roll(1, 1); ++i) {
         magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableG.roll(roll_log))))
       }
     } else if (table_roll.sum < 101) {
       let r = Dicebag.d6(2, { verbose: true })
-      roll_log.push(`=> 2d6 (${r.roll_log}) 50gp Gemstones`)
       for (let i = 0; i < Dicebag.d6(2); ++i) {
         gemstone_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet('gemstones?value=50')))
       }
-      roll_log.push(`=> 1 item from Table G`)
       for (let i = 0; i < Dicebag.roll(1, 1); ++i) {
         magic_item_promise_list.push(RequestPromise.get(MagicItemHelper.formatGet(TableG.roll(roll_log))))
       }

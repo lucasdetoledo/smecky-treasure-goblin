@@ -44,18 +44,75 @@ var modalModule = (function () { // eslint-disable-line no-unused-vars
       stateManager.set('isAnimating', true)
       return new Promise(function (resolve, reject) {
         let roll_log = dataManager.get('roll_log')
-        if (roll_log && roll_log.length > 0) {
-          jqueryMap.$container.empty()
-          jqueryMap.$container.css('visibility', 'visible')
-          jqueryMap.$container.append('<div id="roll-log-modal"></div>')
-          jqueryMap.$container.animate({ width: '100vw' }, 600, function () {
-            let roll_log_modal = $('#roll-log-modal')
-            for (let i = 0; i < roll_log.length; ++i) {
-              roll_log_modal.append('<div>' + roll_log[i] + '</div>')
-            }
-            set_jquery_map()
-          })
-        }
+        jqueryMap.$container.empty()
+        jqueryMap.$container.css('visibility', 'visible')
+        jqueryMap.$container.append('<div id="roll-log-modal"></div>')
+        jqueryMap.$container.animate({ width: '100vw' }, 600, function () {
+          let roll_log_modal = $('#roll-log-modal')
+
+          // coins
+          roll_log_modal.append('<div class="roll-log-header">' + roll_log.hoard_table.name + '</div>')
+          roll_log_modal.append('<div class="roll-log-item-divider"></div>')
+          roll_log_modal.append(
+            '<div class="roll-log-item-container">' +
+              '<div class="roll-log-item-left">&#8226&nbspTable Roll</div>' +
+              '<div class="roll-log-item-center">' + roll_log.hoard_table.dice + '</div>' +
+              '<div class="roll-log-item-right">' + roll_log.hoard_table.rolls + '</div>' +
+            '</div>'
+          )
+          roll_log_modal.append('<div class="roll-log-header">Coins</div>')
+          roll_log_modal.append('<div class="roll-log-item-divider"></div>')
+          if (roll_log.coins.cp) {
+            roll_log_modal.append(
+              '<div class="roll-log-item-container">' +
+                '<div class="roll-log-item-left">&#8226&nbspCopper Pieces</div>' +
+                '<div class="roll-log-item-center">' + roll_log.coins.cp.dice + '</div>' +
+                '<div class="roll-log-item-right">' + roll_log.coins.cp.rolls + '</div>' +
+              '</div>'
+            )
+          }
+          if (roll_log.coins.sp) {
+            roll_log_modal.append(
+              '<div class="roll-log-item-container">' +
+                '<div class="roll-log-item-left">&#8226&nbspSilver Pieces</div>' +
+                '<div class="roll-log-item-center">' + roll_log.coins.sp.dice + '</div>' +
+                '<div class="roll-log-item-right">' + roll_log.coins.sp.rolls + '</div>' +
+              '</div>'
+            )
+          }
+          if (roll_log.coins.ep) {
+            roll_log_modal.append(
+              '<div class="roll-log-item-container">' +
+              '<div class="roll-log-item-left">&#8226&nbspElectrum Pieces</div>' +
+              '<div class="roll-log-item-center">' + roll_log.coins.ep.dice + '</div>' +
+              '<div class="roll-log-item-right">' + roll_log.coins.ep.rolls + '</div>' +
+              '</div>'
+            )
+          }
+          if (roll_log.coins.gp) {
+            roll_log_modal.append(
+              '<div class="roll-log-item-container">' +
+              '<div class="roll-log-item-left">&#8226&nbspGold Pieces</div>' +
+              '<div class="roll-log-item-center">' + roll_log.coins.gp.dice + '</div>' +
+              '<div class="roll-log-item-right">' + roll_log.coins.gp.rolls + '</div>' +
+              '</div>'
+            )
+          }
+          if (roll_log.coins.pp) {
+            roll_log_modal.append(
+              '<div class="roll-log-item-container">' +
+              '<div class="roll-log-item-left">&#8226&nbspPlatinum Pieces</div>' +
+              '<div class="roll-log-item-center">' + roll_log.coins.pp.dice + '</div>' +
+              '<div class="roll-log-item-right">' + roll_log.coins.pp.rolls + '</div>' +
+              '</div>'
+            )
+          }
+          if (roll_log.gemstones) {
+            roll_log_modal.append('<div class="roll-log-header">Gemstones</div>')
+            roll_log_modal.append('<div class="roll-log-item-divider"></div>')
+          }
+          set_jquery_map()
+        })
         stateManager.set('isAnimating', false)
         stateManager.set('currentlyExtended', 'roll_log_modal')
         return resolve()

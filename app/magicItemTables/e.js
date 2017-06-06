@@ -6,8 +6,9 @@ module.exports = () => {
 
   roll = (roll_log) => {
     let table_roll
+
     table_roll = Dicebag.roll(100, 1, { verbose: true })
-    roll_log.push(`=> 1d100 (${table_roll.roll_log}) on Table E`)
+    roll_log.push({ category: 'magic item', name: 'Table E', dice: '1d100', rolls: table_roll.roll_log })
 
     if (table_roll < 31) {
       return 'magicitems?name=Spell Scroll&modifier=8'

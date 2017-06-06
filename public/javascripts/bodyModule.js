@@ -158,8 +158,8 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
     if (loot_list.coins.cp) {
       jqueryMap.$body_loot_list_container.append(
         '<div class="body-loot-item-container">' +
-        '<div class="body-loot-item">&#8226&nbspCopper Pieces</div>' +
-        '<div class="body-loot-item">' + loot_list.coins.cp + '</div>' +
+          '<div class="body-loot-item">&#8226&nbspCopper Pieces</div>' +
+          '<div class="body-loot-item">' + loot_list.coins.cp + '</div>' +
         '</div>'
       )
     }

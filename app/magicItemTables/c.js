@@ -6,8 +6,9 @@ module.exports = () => {
 
   roll = (roll_log) => {
     let table_roll
+
     table_roll = Dicebag.roll(100, 1, { verbose: true })
-    roll_log.push(`=> (${table_roll.roll_log}) on Table C`)
+    roll_log.push({ dice: '1d100', rolls: table_roll.roll_log })
 
     if (table_roll.sum < 16) {
       return 'magicitems?name=Potion of Superior Healing'

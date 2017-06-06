@@ -1,7 +1,9 @@
 'use strict'
 
 module.exports = () => {
-  let formatGet = (route) => {
+  let formatGet
+
+  formatGet = (route) => {
     return {
       uri: `${process.env.HOARDER_URL}/${route}`,
       json: true
