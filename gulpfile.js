@@ -22,7 +22,7 @@ Gulp.task('integrate', () => {
 
 Gulp.task('set-Env', () => {
   Env({
-    file: '.Env',
+    file: '.env',
     type: 'ini'
   })
 })
