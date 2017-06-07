@@ -24,6 +24,7 @@
     "request-promise": "^4.2.1",
     "sequelize": "^3.30.4",
     "smecky-dicebag": "^1.0.1",
+    "umzug": "^2.0.1",
     "winston": "^2.3.1"
   }
 }

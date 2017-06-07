@@ -1,4 +1,6 @@
-postgres:
-  image: postgres:9.5
+db:
+  image: postgres:9.4
   ports:
-    - 6001:5432
+    - 3610:5432
+  environment:
+    - POSTGRES_DB=smeckyhoarder

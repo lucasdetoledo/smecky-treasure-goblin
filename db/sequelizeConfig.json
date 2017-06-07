@@ -2,9 +2,9 @@
   "development": {
     "username": "postgres",
     "password": null,
-    "database": "game-tools",
+    "database": "smeckyhoarder",
     "host": "127.0.0.1",
-    "port": "6001",
+    "port": "3610",
     "dialect": "postgres"
   }
 }
