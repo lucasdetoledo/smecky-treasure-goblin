@@ -53,37 +53,37 @@ module.exports = () => {
       name: `Table ${table.toUpperCase()}`,
       dice: `${die_count}d${die_type}`,
       rolls: r.roll_log,
-      magicitems: []
+      magic_items: []
     }
 
     for (let i = 0; i < r.sum; ++i) {
       switch (table) {
         case 'a':
-          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableA.roll(magic_item_table_log.magicitems))))
+          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableA.roll(magic_item_table_log.magic_items))))
           break
         case 'b':
-          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableB.roll(magic_item_table_log.magicitems))))
+          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableB.roll(magic_item_table_log.magic_items))))
           break
         case 'c':
-          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableC.roll(magic_item_table_log.magicitems))))
+          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableC.roll(magic_item_table_log.magic_items))))
           break
         case 'd':
-          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableD.roll(magic_item_table_log.magicitems))))
+          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableD.roll(magic_item_table_log.magic_items))))
           break
         case 'e':
-          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableE.roll(magic_item_table_log.magicitems))))
+          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableE.roll(magic_item_table_log.magic_items))))
           break
         case 'f':
-          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableF.roll(magic_item_table_log.magicitems))))
+          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableF.roll(magic_item_table_log.magic_items))))
           break
         case 'g':
-          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableG.roll(magic_item_table_log.magicitems))))
+          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableG.roll(magic_item_table_log.magic_items))))
           break
         case 'h':
-          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableH.roll(magic_item_table_log.magicitems))))
+          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableH.roll(magic_item_table_log.magic_items))))
           break
         case 'i':
-          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableI.roll(magic_item_table_log.magicitems))))
+          p.push(RequestPromise.get(MagicItemHelper.formatGet(TableI.roll(magic_item_table_log.magic_items))))
           break
       }
     }
