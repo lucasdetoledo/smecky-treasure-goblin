@@ -69,7 +69,7 @@ var shellModule = (function () { // eslint-disable-line no-unused-vars
     set_jquery_map()
     stateManager.config({ isAnimating: false, currentlyExtended: null })
     apiManager.config({
-      horde_url: 'http://localhost:3612/hoard'
+      horde_url: 'http://www.treasuregoblin.io/hoard'
     })
     PubSub.subscribe('foot_submit_click', foot_submit_sub)
     PubSub.subscribe('foot_log_click', foot_log_sub)

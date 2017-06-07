@@ -115,7 +115,7 @@ module.exports = () => {
         sp: null,
         ep: null,
         gp: null,
-        pp: null,
+        pp: null
       },
       gemstones: null,
       artobjects: null,

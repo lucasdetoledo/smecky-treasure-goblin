@@ -3,4 +3,4 @@ db:
   ports:
     - 3610:5432
   environment:
-    - POSTGRES_DB=smeckyhoarder
+    - POSTGRES_DB=treasuregoblin

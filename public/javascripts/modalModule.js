@@ -142,7 +142,8 @@ var modalModule = (function () { // eslint-disable-line no-unused-vars
             roll_log.magic_item_tables[0].magicitems.forEach(function (magic_item) {
               roll_log_modal.append(
                 '<div class="roll-log-item-container">' +
-                  '<div class="roll-log-item-left">&#8226&nbspTable G Roll</div>' +
+                  '<div class="roll-log-item-left">&#8226&nbsp' +
+                  roll_log.magic_item_tables[0].name + ' Roll</div>' +
                   '<div class="roll-log-item-center">' + magic_item.dice + '</div>' +
                   '<div class="roll-log-item-right">' + magic_item.rolls + '</div>' +
                 '</div>'
