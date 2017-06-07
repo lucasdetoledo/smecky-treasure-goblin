@@ -10,6 +10,10 @@ App.set('views', `${AppRoot}/views`)
 App.set('view engine', 'pug')
 App.use(BodyParser.json())
 App.use(Express.static(`${AppRoot}/public`))
+App.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  next()
+})
 
 let mainRouter = require(`${AppRoot}/app/routes/mainRouter`)
 let hoardRouter = require(`${AppRoot}/app/routes/hoardRouter`)
