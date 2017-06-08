@@ -52,7 +52,7 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
   var config, init, set_jquery_map, type_dropdown_click, type_dropdown_horde_click,
     type_dropdown_individual_click, level_dropdown_click, level_dropdown_four_click,
     level_dropdown_ten_click, setLootList, setDropdownErrorColor,
-    resetDropdownErrorColor, add_loot_item
+    resetDropdownErrorColor, add_loot_item, add_magic_item
   // ----------------------------------------------------------------------------------end
 
   // ----------------------------------------------------------------------Private Methods
@@ -85,6 +85,65 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
         '<div class="body-loot-item">' + val + '</div>' +
       '</div>'
     )
+  }
+
+  add_magic_item = function (name, modifier, type, sub_type, page) {
+    switch (type) {
+      case 'Armor':
+        if (modifier > 0) {
+          add_loot_item('images/armorIcon.svg', `${name} +${modifier} [${sub_type}]`, page)
+        } else {
+          add_loot_item('images/armorIcon.svg', `${name} [${sub_type}]`, page)
+        }
+        break
+      case 'Potion':
+        add_loot_item('images/potionIcon.svg', name, page)
+        break
+      case 'Ring':
+        if (modifier > 0) {
+          add_loot_item('images/ringIcon.svg', `${name} +${modifier}`, page)
+        } else {
+          add_loot_item('images/ringIcon.svg', name, page)
+        }
+        break
+      case 'Rod':
+        if (modifier > 0) {
+          add_loot_item('images/rodIcon.svg', `${name} +${modifier}`, page)
+        } else {
+          add_loot_item('images/rodIcon.svg', name, page)
+        }
+        break
+      case 'Scroll':
+        add_loot_item('images/scrollIcon.svg', `${name} ${modifier} [${sub_type}]`, page)
+        break
+      case 'Staff':
+        if (modifier > 0) {
+          add_loot_item('images/staffIcon.svg', `${name} +${modifier}`, page)
+        } else {
+          add_loot_item('images/staffIcon.svg', name, page)
+        }
+        break
+      case 'Wand':
+        if (modifier > 0) {
+          add_loot_item('images/wandIcon.svg', `${name} +${modifier}`, page)
+        } else {
+          add_loot_item('images/wandIcon.svg', name, page)
+        }
+        break
+      case 'Weapon':
+        if (modifier > 0) {
+          add_loot_item('images/weaponIcon.svg', `${name} +${modifier} [${sub_type}]`, page)
+        } else {
+          add_loot_item('images/weaponIcon.svg', `${name} [${sub_type}]`, page)
+        }
+        break
+      case 'Wondrous Item':
+        add_loot_item('images/wondrousItemIcon.svg', name, page)
+        break
+      default:
+        add_loot_item('images/wondrousItemIcon.svg', name, page)
+        break
+    }
   }
   // ----------------------------------------------------------------------------------end
 
@@ -202,36 +261,9 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
       jqueryMap.$body_loot_list_container.append('<div class="body-loot-header">Magic Items</div>')
       jqueryMap.$body_loot_list_container.append('<div class="body-loot-item-divider"></div>')
       for (i = 0; i < loot_list.magic_items.length; ++i) {
-        if (loot_list.magic_items[i].sub_type) {
-          if (loot_list.magic_items[i].modifier !== '0') {
-            add_loot_item('images/coinIcon.svg', `${loot_list.magic_items[i].name} (+${loot_list.magic_items[i].modifier}) (${loot_list.magic_items[i].sub_type})`, `pg ${loot_list.magic_items[i].page}`)
-          } else {
-            jqueryMap.$body_loot_list_container.append(
-              '<div class="body-loot-item-container">' +
-                '<div class="body-loot-item">&#8226&nbsp' + loot_list.magic_items[i].name +
-                ' (' + loot_list.magic_items[i].sub_type + ')</div>' +
-                '<div class="body-loot-item">pg.&nbsp' + loot_list.magic_items[i].page + '</div>' +
-              '</div>'
-            )
-          }
-        } else {
-          if (loot_list.magic_items[i].modifier !== '0') {
-            jqueryMap.$body_loot_list_container.append(
-              '<div class="body-loot-item-container">' +
-                '<div class="body-loot-item">&#8226&nbsp' + loot_list.magic_items[i].name +
-                ' (' + loot_list.magic_items[i].modifier + ')</div>' +
-                '<div class="body-loot-item">pg.&nbsp' + loot_list.magic_items[i].page + '</div>' +
-              '</div>'
-            )
-          } else {
-            jqueryMap.$body_loot_list_container.append(
-              '<div class="body-loot-item-container">' +
-                '<div class="body-loot-item">&#8226&nbsp' + loot_list.magic_items[i].name + '</div>' +
-                '<div class="body-loot-item">pg.&nbsp' + loot_list.magic_items[i].page + '</div>' +
-              '</div>'
-            )
-          }
-        }
+        add_magic_item(loot_list.magic_items[i].name, loot_list.magic_items[i].modifier,
+          loot_list.magic_items[i].type, loot_list.magic_items[i].sub_type,
+          loot_list.magic_items[i].page)
       }
     }
   }
