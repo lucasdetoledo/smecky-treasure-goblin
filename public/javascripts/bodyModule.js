@@ -51,7 +51,7 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
   }
   var config, init, set_jquery_map, type_dropdown_click, type_dropdown_horde_click,
     type_dropdown_individual_click, level_dropdown_click, level_dropdown_four_click,
-    level_dropdown_etc_click, setLootList, toggleInfoDropdown, setDropdownErrorColor,
+    level_dropdown_etc_click, setLootList, setDropdownErrorColor,
     resetDropdownErrorColor, add_loot_item
   // ----------------------------------------------------------------------------------end
 
@@ -78,8 +78,8 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
   add_loot_item = function (item, val) {
     jqueryMap.$body_loot_list_container.append(
       '<div class="body-loot-item-container">' +
-      '<div class="body-loot-item">&#8226&nbsp' + item + '</div>' +
-      '<div class="body-loot-item">' + val + '</div>' +
+        '<div class="body-loot-item">&#8226&nbsp' + item + '</div>' +
+        '<div class="body-loot-item">' + val + '</div>' +
       '</div>'
     )
   }
@@ -201,14 +201,7 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
       for (i = 0; i < loot_list.magic_items.length; ++i) {
         if (loot_list.magic_items[i].sub_type) {
           if (loot_list.magic_items[i].modifier !== '0') {
-            jqueryMap.$body_loot_list_container.append(
-              '<div class="body-loot-item-container">' +
-                '<div class="body-loot-item">&#8226&nbsp' + loot_list.magic_items[i].name +
-                  ' (' + loot_list.magic_items[i].modifier + ') ' +
-                  ' (' + loot_list.magic_items[i].sub_type + ')</div>' +
-                '<div class="body-loot-item">pg.&nbsp' + loot_list.magic_items[i].page + '</div>' +
-              '</div>'
-            )
+            add_loot_item(`${loot_list.magic_items[i].name} (+${loot_list.magic_items[i].modifier}) (${loot_list.magic_items[i].sub_type})`, `pg ${loot_list.magic_items[i].page}`)
           } else {
             jqueryMap.$body_loot_list_container.append(
               '<div class="body-loot-item-container">' +
