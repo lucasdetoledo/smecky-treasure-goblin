@@ -25,6 +25,7 @@ body {
 #goblin-body {
   width: 100%;
   height: 80vh;
+  overflow-y: hidden;
 }
 
 #goblin-foot {
