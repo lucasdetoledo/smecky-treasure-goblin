@@ -1,6 +1,9 @@
 #foot-container {
   height: 100%;
-  margin: 0 15px 0 15px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 570px;
 }
 
 #foot-submit-button {}
@@ -8,6 +11,7 @@
 #foot-roll-log-button {}
 
 #foot-button-container {
+  width: 100%;
   height: 100%;
   margin: 0 15px 0 15px;
   display: flex;
