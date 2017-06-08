@@ -60,6 +60,11 @@
   margin: 0 0 10px 0;
 }
 
+.body-loot-icon-item-container {
+  display: flex;
+  align-items: center;
+}
+
 .body-loot-header {
   font-weight: bold;
   font-size: 1.1em;
@@ -67,7 +72,7 @@
 }
 
 .body-loot-item {
-  padding: 0 5px 0 0;
+  padding: 0 5px 0 5px;
 }
 
 .body-loot-item-divider {

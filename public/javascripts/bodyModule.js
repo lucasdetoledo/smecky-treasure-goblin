@@ -75,10 +75,13 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
     }
   }
 
-  add_loot_item = function (item, val) {
+  add_loot_item = function (icon, item, val) {
     jqueryMap.$body_loot_list_container.append(
       '<div class="body-loot-item-container">' +
-        '<div class="body-loot-item">&#8226&nbsp' + item + '</div>' +
+        '<div class="body-loot-icon-item-container">' +
+          `<img src="${icon}" style="width: 10px; height: 10px">` +
+          '<div class="body-loot-item">' + item + '</div>' +
+        '</div>' +
         '<div class="body-loot-item">' + val + '</div>' +
       '</div>'
     )
@@ -165,26 +168,26 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
     jqueryMap.$body_loot_list_container.append('<div class="body-loot-header">Coins</div>')
     jqueryMap.$body_loot_list_container.append('<div class="body-loot-item-divider"></div>')
     if (loot_list.coins.cp) {
-      add_loot_item('Copper Pieces', loot_list.coins.cp)
+      add_loot_item('images/coinIcon.svg', 'Copper Pieces', loot_list.coins.cp)
     }
     if (loot_list.coins.sp) {
-      add_loot_item('Silver Pieces', loot_list.coins.sp)
+      add_loot_item('images/coinIcon.svg', 'Silver Pieces', loot_list.coins.sp)
     }
     if (loot_list.coins.ep) {
-      add_loot_item('Electrum Pieces', loot_list.coins.ep)
+      add_loot_item('images/coinIcon.svg', 'Electrum Pieces', loot_list.coins.ep)
     }
     if (loot_list.coins.gp) {
-      add_loot_item('Gold Pieces', loot_list.coins.gp)
+      add_loot_item('images/coinIcon.svg', 'Gold Pieces', loot_list.coins.gp)
     }
     if (loot_list.coins.pp) {
-      add_loot_item('Platinum Pieces', loot_list.coins.gp)
+      add_loot_item('images/coinIcon.svg', 'Platinum Pieces', loot_list.coins.gp)
     }
     if (loot_list.gemstones.length > 0) {
       jqueryMap.$body_loot_list_container.append('<div class="body-loot-header">Gemstones</div>')
       jqueryMap.$body_loot_list_container.append('<div class="body-loot-item-divider"></div>')
 
       for (var i = 0; i < loot_list.gemstones.length; ++i) {
-        add_loot_item(loot_list.gemstones[i].description, loot_list.gemstones[i].value + 'gp')
+        add_loot_item('images/gemstoneIcon.svg', loot_list.gemstones[i].description, loot_list.gemstones[i].value + 'gp')
       }
     }
     if (loot_list.art_objects.length > 0) {
@@ -192,7 +195,7 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
       jqueryMap.$body_loot_list_container.append('<div class="body-loot-item-divider"></div>')
 
       for (i = 0; i < loot_list.art_objects.length; ++i) {
-        add_loot_item(loot_list.art_objects[i].description, loot_list.art_objects[i].value + 'gp')
+        add_loot_item('images/paintBrushIcon.svg', loot_list.art_objects[i].description, loot_list.art_objects[i].value + 'gp')
       }
     }
     if (loot_list.magic_items.length > 0) {
@@ -201,7 +204,7 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
       for (i = 0; i < loot_list.magic_items.length; ++i) {
         if (loot_list.magic_items[i].sub_type) {
           if (loot_list.magic_items[i].modifier !== '0') {
-            add_loot_item(`${loot_list.magic_items[i].name} (+${loot_list.magic_items[i].modifier}) (${loot_list.magic_items[i].sub_type})`, `pg ${loot_list.magic_items[i].page}`)
+            add_loot_item('images/coinIcon.svg', `${loot_list.magic_items[i].name} (+${loot_list.magic_items[i].modifier}) (${loot_list.magic_items[i].sub_type})`, `pg ${loot_list.magic_items[i].page}`)
           } else {
             jqueryMap.$body_loot_list_container.append(
               '<div class="body-loot-item-container">' +
