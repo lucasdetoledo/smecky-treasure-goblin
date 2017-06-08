@@ -24,7 +24,7 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
           '</div>' +
           '<div id="body-level-dropdown-content" style="display:none" class="body-dropdown-content">' +
             '<div id="body-level-dropdown-four" class="body-type-dropdown-item">0 - 4</div>' +
-            '<div id="body-level-dropdown-etc" class="body-type-dropdown-item">etc</div>' +
+            '<div id="body-level-dropdown-ten" class="body-type-dropdown-item">5 - 10</div>' +
           '</div>' +
         '</div>' +
       '</div>' +
@@ -46,12 +46,12 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
     $body_level_dropdown_placeholder: null,
     $body_level_dropdown_content: null,
     $body_level_dropdown_four: null,
-    $body_level_dropdown_etc: null,
+    $body_level_dropdown_ten: null,
     $body_loot_list_container: null
   }
   var config, init, set_jquery_map, type_dropdown_click, type_dropdown_horde_click,
     type_dropdown_individual_click, level_dropdown_click, level_dropdown_four_click,
-    level_dropdown_etc_click, setLootList, setDropdownErrorColor,
+    level_dropdown_ten_click, setLootList, setDropdownErrorColor,
     resetDropdownErrorColor, add_loot_item
   // ----------------------------------------------------------------------------------end
 
@@ -70,7 +70,7 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
       $body_level_dropdown_placeholder: $container.find('#body-level-dropdown-placeholder'),
       $body_level_dropdown_content: $container.find('#body-level-dropdown-content'),
       $body_level_dropdown_four: $container.find('#body-level-dropdown-four'),
-      $body_level_dropdown_etc: $container.find('#body-level-dropdown-etc'),
+      $body_level_dropdown_ten: $container.find('#body-level-dropdown-ten'),
       $body_loot_list_container: $container.find('#body-loot-list-container')
     }
   }
@@ -136,12 +136,12 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
 
   level_dropdown_four_click = function () {
     jqueryMap.$body_level_dropdown_placeholder.html('0 - 4')
-    stateManager.set('level', '0-4')
+    stateManager.set('level', '4')
   }
 
-  level_dropdown_etc_click = function () {
-    jqueryMap.$body_level_dropdown_placeholder.html('etc')
-    stateManager.set('level', 'etc')
+  level_dropdown_ten_click = function () {
+    jqueryMap.$body_level_dropdown_placeholder.html('5 - 10')
+    stateManager.set('level', '10')
   }
   // ----------------------------------------------------------------------------------end
 
@@ -244,7 +244,7 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
     jqueryMap.$body_type_dropdown_individual.on('click', type_dropdown_individual_click)
     jqueryMap.$body_level_dropdown_container.on('click', level_dropdown_click)
     jqueryMap.$body_level_dropdown_four.on('click', level_dropdown_four_click)
-    jqueryMap.$body_level_dropdown_etc.on('click', level_dropdown_etc_click)
+    jqueryMap.$body_level_dropdown_ten.on('click', level_dropdown_ten_click)
   }
   // ----------------------------------------------------------------------------------end
   return {
