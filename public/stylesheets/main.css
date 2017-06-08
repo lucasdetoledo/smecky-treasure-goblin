@@ -5,6 +5,7 @@ body {
   justify-content: center;
   margin: 0;
   font-family: 'Open Sans', sans-serif;
+  overflow-y: hidden;
 }
 
 #smecky-treasure-goblin {
@@ -25,7 +26,6 @@ body {
 #goblin-body {
   width: 100%;
   height: 80vh;
-  overflow-y: hidden;
 }
 
 #goblin-foot {
