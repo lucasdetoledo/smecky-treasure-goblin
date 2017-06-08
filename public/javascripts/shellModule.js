@@ -20,7 +20,7 @@ var shellModule = (function () { // eslint-disable-line no-unused-vars
     $foot: null,
     $modal: null
   }
-  var config, init, set_jquery_map, foot_submit_sub, foot_log_sub
+  var config, init, set_jquery_map, foot_submit_sub, foot_log_sub, validate_submit_button_sub
   // ----------------------------------------------------------------------------------end
 
   // ----------------------------------------------------------------------Private Methods
@@ -57,6 +57,12 @@ var shellModule = (function () { // eslint-disable-line no-unused-vars
     rollLogModalModule.toggleRollLogAsync().then(() => {
     })
   }
+
+  validate_submit_button_sub = function () {
+    if (stateManager.get('type') && stateManager.get('level')) {
+      footModule.resetSubmitButtonErrorColor()
+    }
+  }
   // ----------------------------------------------------------------------------------end
 
   // -----------------------------------------------------------------------Public Methods
@@ -73,6 +79,7 @@ var shellModule = (function () { // eslint-disable-line no-unused-vars
     })
     PubSub.subscribe('foot_submit_click', foot_submit_sub)
     PubSub.subscribe('foot_log_click', foot_log_sub)
+    PubSub.subscribe('validate_submit_button', validate_submit_button_sub)
     headModule.config({ title: 'Treasure Goblin' })
     headModule.init({ $container: jqueryMap.$head })
     bodyModule.config()

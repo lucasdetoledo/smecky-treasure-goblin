@@ -24,7 +24,8 @@ var footModule = (function () { // eslint-disable-line no-unused-vars
     $container: null,
     $foot_submit_button: null
   }
-  var config, init, set_jquery_map, submit_click, roll_log_click, download_click
+  var config, init, set_jquery_map, submit_click, roll_log_click, download_click,
+    resetSubmitButtonErrorColor
   // ----------------------------------------------------------------------------------end
 
   // ----------------------------------------------------------------------Private Methods
@@ -63,6 +64,10 @@ var footModule = (function () { // eslint-disable-line no-unused-vars
   // ----------------------------------------------------------------------------------end
 
   // -----------------------------------------------------------------------Public Methods
+  resetSubmitButtonErrorColor = function () {
+    jqueryMap.$foot_submit_button.css('color', 'black')
+  }
+
   config = function (input_map) {}
 
   init = function (input_map) {
@@ -76,6 +81,7 @@ var footModule = (function () { // eslint-disable-line no-unused-vars
   // ----------------------------------------------------------------------------------end
   return {
     config: config,
-    init: init
+    init: init,
+    resetSubmitButtonErrorColor: resetSubmitButtonErrorColor
   }
 }())

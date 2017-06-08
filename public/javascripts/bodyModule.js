@@ -1,5 +1,5 @@
 'use strict'
-/* global stateManager */
+/* global stateManager, PubSub */
 
 var bodyModule = (function () { // eslint-disable-line no-unused-vars
  // ----------------------------------------------------------------Module Scope Variables
@@ -90,6 +90,7 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
   add_magic_item = function (name, modifier, type, sub_type, page) {
     switch (type) {
       case 'Armor':
+        // TODO: Need another case here. There is a chance sub_type is null
         if (modifier > 0) {
           add_loot_item('images/armorIcon.svg', `${name} +${modifier} [${sub_type}]`, `pg ${page}`)
         } else {
@@ -170,11 +171,13 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
   type_dropdown_horde_click = function () {
     jqueryMap.$body_type_dropdown_placeholder.html('Horde')
     stateManager.set('type', 'horde')
+    PubSub.publish('validate_submit_button')
   }
 
   type_dropdown_individual_click = function () {
     jqueryMap.$body_type_dropdown_placeholder.html('Individual')
     stateManager.set('type', 'individual')
+    PubSub.publish('validate_submit_button')
   }
 
   level_dropdown_click = function () {
@@ -199,11 +202,13 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
   level_dropdown_four_click = function () {
     jqueryMap.$body_level_dropdown_placeholder.html('0 - 4')
     stateManager.set('level', '4')
+    PubSub.publish('validate_submit_button')
   }
 
   level_dropdown_ten_click = function () {
     jqueryMap.$body_level_dropdown_placeholder.html('5 - 10')
     stateManager.set('level', '10')
+    PubSub.publish('validate_submit_button')
   }
   // ----------------------------------------------------------------------------------end
 
