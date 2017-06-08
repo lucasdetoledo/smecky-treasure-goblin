@@ -1,6 +1,6 @@
 'use strict'
-/* global PubSub, apiManager, dataManager, headModule, bodyModule, footModule, modalModule,
-   stateManager */
+/* global PubSub, apiManager, dataManager, headModule, bodyModule, footModule,
+  rollLogModalModule, stateManager */
 var shellModule = (function () { // eslint-disable-line no-unused-vars
   // ---------------------------------------------------------------Module Scope Variables
   var configMap = {
@@ -54,7 +54,7 @@ var shellModule = (function () { // eslint-disable-line no-unused-vars
   }
 
   foot_log_sub = function () {
-    modalModule.toggleRollLogAsync().then(() => {
+    rollLogModalModule.toggleRollLogAsync().then(() => {
     })
   }
   // ----------------------------------------------------------------------------------end
@@ -79,8 +79,8 @@ var shellModule = (function () { // eslint-disable-line no-unused-vars
     bodyModule.init({ $container: jqueryMap.$body })
     footModule.config()
     footModule.init({ $container: jqueryMap.$foot })
-    modalModule.config()
-    modalModule.init({ $container: jqueryMap.$modal })
+    rollLogModalModule.config()
+    rollLogModalModule.init({ $container: jqueryMap.$modal })
   }
   // ----------------------------------------------------------------------------------end
   return {

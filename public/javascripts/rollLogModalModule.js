@@ -1,6 +1,6 @@
 'use strict'
 /* global $, dataManager, stateManager */
-var modalModule = (function () { // eslint-disable-line no-unused-vars
+var rollLogModalModule = (function () { // eslint-disable-line no-unused-vars
   // ---------------------------------------------------------------Module Scope Variables
   var configMap = {
     html: null
@@ -54,102 +54,102 @@ var modalModule = (function () { // eslint-disable-line no-unused-vars
         jqueryMap.$container.animate({ width: '100vw' }, 600, function () {
           let roll_log_modal = $('#roll-log-modal')
 
-          roll_log_modal.append('<div class="roll-log-header">' + roll_log.hoard_table.name + '</div>')
-          roll_log_modal.append('<div class="roll-log-item-divider"></div>')
+          roll_log_modal.append('<div class="roll-log-modal-header">' + roll_log.hoard_table.name + '</div>')
+          roll_log_modal.append('<div class="roll-log-modal-item-divider"></div>')
           roll_log_modal.append(
-            '<div class="roll-log-item-container">' +
-              '<div class="roll-log-item-left">&#8226&nbspTable Roll</div>' +
-              '<div class="roll-log-item-center">' + roll_log.hoard_table.dice + '</div>' +
-              '<div class="roll-log-item-right">' + roll_log.hoard_table.rolls + '</div>' +
+            '<div class="roll-log-modal-item-container">' +
+              '<div class="roll-log-modal-item-left">&#8226&nbspTable Roll</div>' +
+              '<div class="roll-log-modal-item-center">' + roll_log.hoard_table.dice + '</div>' +
+              '<div class="roll-log-modal-item-right">' + roll_log.hoard_table.rolls + '</div>' +
             '</div>'
           )
-          roll_log_modal.append('<div class="roll-log-header">Coins</div>')
-          roll_log_modal.append('<div class="roll-log-item-divider"></div>')
+          roll_log_modal.append('<div class="roll-log-modal-header">Coins</div>')
+          roll_log_modal.append('<div class="roll-log-modal-item-divider"></div>')
           if (roll_log.coins.cp) {
             roll_log_modal.append(
-              '<div class="roll-log-item-container">' +
-                '<div class="roll-log-item-left">&#8226&nbspCopper Pieces</div>' +
-                '<div class="roll-log-item-center">' + roll_log.coins.cp.dice + '</div>' +
-                '<div class="roll-log-item-right">' + roll_log.coins.cp.rolls + '</div>' +
+              '<div class="roll-log-modal-item-container">' +
+                '<div class="roll-log-modal-item-left">&#8226&nbspCopper Pieces</div>' +
+                '<div class="roll-log-modal-item-center">' + roll_log.coins.cp.dice + '</div>' +
+                '<div class="roll-log-modal-item-right">' + roll_log.coins.cp.rolls + '</div>' +
               '</div>'
             )
           }
           if (roll_log.coins.sp) {
             roll_log_modal.append(
-              '<div class="roll-log-item-container">' +
-                '<div class="roll-log-item-left">&#8226&nbspSilver Pieces</div>' +
-                '<div class="roll-log-item-center">' + roll_log.coins.sp.dice + '</div>' +
-                '<div class="roll-log-item-right">' + roll_log.coins.sp.rolls + '</div>' +
+              '<div class="roll-log-modal-item-container">' +
+                '<div class="roll-log-modal-item-left">&#8226&nbspSilver Pieces</div>' +
+                '<div class="roll-log-modal-item-center">' + roll_log.coins.sp.dice + '</div>' +
+                '<div class="roll-log-modal-item-right">' + roll_log.coins.sp.rolls + '</div>' +
               '</div>'
             )
           }
           if (roll_log.coins.ep) {
             roll_log_modal.append(
-              '<div class="roll-log-item-container">' +
-                '<div class="roll-log-item-left">&#8226&nbspElectrum Pieces</div>' +
-                '<div class="roll-log-item-center">' + roll_log.coins.ep.dice + '</div>' +
-                '<div class="roll-log-item-right">' + roll_log.coins.ep.rolls + '</div>' +
+              '<div class="roll-log-modal-item-container">' +
+                '<div class="roll-log-modal-item-left">&#8226&nbspElectrum Pieces</div>' +
+                '<div class="roll-log-modal-item-center">' + roll_log.coins.ep.dice + '</div>' +
+                '<div class="roll-log-modal-item-right">' + roll_log.coins.ep.rolls + '</div>' +
               '</div>'
             )
           }
           if (roll_log.coins.gp) {
             roll_log_modal.append(
-              '<div class="roll-log-item-container">' +
-                '<div class="roll-log-item-left">&#8226&nbspGold Pieces</div>' +
-                '<div class="roll-log-item-center">' + roll_log.coins.gp.dice + '</div>' +
-                '<div class="roll-log-item-right">' + roll_log.coins.gp.rolls + '</div>' +
+              '<div class="roll-log-modal-item-container">' +
+                '<div class="roll-log-modal-item-left">&#8226&nbspGold Pieces</div>' +
+                '<div class="roll-log-modal-item-center">' + roll_log.coins.gp.dice + '</div>' +
+                '<div class="roll-log-modal-item-right">' + roll_log.coins.gp.rolls + '</div>' +
               '</div>'
             )
           }
           if (roll_log.coins.pp) {
             roll_log_modal.append(
-              '<div class="roll-log-item-container">' +
-                '<div class="roll-log-item-left">&#8226&nbspPlatinum Pieces</div>' +
-                '<div class="roll-log-item-center">' + roll_log.coins.pp.dice + '</div>' +
-                '<div class="roll-log-item-right">' + roll_log.coins.pp.rolls + '</div>' +
+              '<div class="roll-log-modal-item-container">' +
+                '<div class="roll-log-modal-item-left">&#8226&nbspPlatinum Pieces</div>' +
+                '<div class="roll-log-modal-item-center">' + roll_log.coins.pp.dice + '</div>' +
+                '<div class="roll-log-modal-item-right">' + roll_log.coins.pp.rolls + '</div>' +
               '</div>'
             )
           }
           if (roll_log.gemstones) {
-            roll_log_modal.append('<div class="roll-log-header">Gemstones</div>')
-            roll_log_modal.append('<div class="roll-log-item-divider"></div>')
+            roll_log_modal.append('<div class="roll-log-modal-header">Gemstones</div>')
+            roll_log_modal.append('<div class="roll-log-modal-item-divider"></div>')
             roll_log_modal.append(
-              '<div class="roll-log-item-container">' +
-                '<div class="roll-log-item-left">&#8226&nbspTable Roll</div>' +
-                '<div class="roll-log-item-center">' + roll_log.gemstones.dice + '</div>' +
-                '<div class="roll-log-item-right">' + roll_log.gemstones.rolls + '</div>' +
+              '<div class="roll-log-modal-item-container">' +
+                '<div class="roll-log-modal-item-left">&#8226&nbspTable Roll</div>' +
+                '<div class="roll-log-modal-item-center">' + roll_log.gemstones.dice + '</div>' +
+                '<div class="roll-log-modal-item-right">' + roll_log.gemstones.rolls + '</div>' +
               '</div>'
             )
           }
           if (roll_log.artobjects) {
-            roll_log_modal.append('<div class="roll-log-header">Art Objects</div>')
-            roll_log_modal.append('<div class="roll-log-item-divider"></div>')
+            roll_log_modal.append('<div class="roll-log-modal-header">Art Objects</div>')
+            roll_log_modal.append('<div class="roll-log-modal-item-divider"></div>')
             roll_log_modal.append(
-              '<div class="roll-log-item-container">' +
-                '<div class="roll-log-item-left">&#8226&nbspTable Roll</div>' +
-                '<div class="roll-log-item-center">' + roll_log.artobjects.dice + '</div>' +
-                '<div class="roll-log-item-right">' + roll_log.artobjects.rolls + '</div>' +
+              '<div class="roll-log-modal-item-container">' +
+                '<div class="roll-log-modal-item-left">&#8226&nbspTable Roll</div>' +
+                '<div class="roll-log-modal-item-center">' + roll_log.artobjects.dice + '</div>' +
+                '<div class="roll-log-modal-item-right">' + roll_log.artobjects.rolls + '</div>' +
               '</div>'
             )
           }
           if (roll_log.magic_item_tables.length > 0) {
-            roll_log_modal.append('<div class="roll-log-header">Magic Item ' +
+            roll_log_modal.append('<div class="roll-log-modal-header">Magic Item ' +
               roll_log.magic_item_tables[0].name + '</div>')
-            roll_log_modal.append('<div class="roll-log-item-divider"></div>')
+            roll_log_modal.append('<div class="roll-log-modal-item-divider"></div>')
             roll_log_modal.append(
-              '<div class="roll-log-item-container">' +
-                '<div class="roll-log-item-left">&#8226&nbspTable Roll</div>' +
-                '<div class="roll-log-item-center">' + roll_log.magic_item_tables[0].dice + '</div>' +
-                '<div class="roll-log-item-right">' + roll_log.magic_item_tables[0].rolls + '</div>' +
+              '<div class="roll-log-modal-item-container">' +
+                '<div class="roll-log-modal-item-left">&#8226&nbspTable Roll</div>' +
+                '<div class="roll-log-modal-item-center">' + roll_log.magic_item_tables[0].dice + '</div>' +
+                '<div class="roll-log-modal-item-right">' + roll_log.magic_item_tables[0].rolls + '</div>' +
               '</div>'
             )
             roll_log.magic_item_tables[0].magic_items.forEach(function (magic_item) {
               roll_log_modal.append(
-                '<div class="roll-log-item-container">' +
-                  '<div class="roll-log-item-left">&#8226&nbsp' +
+                '<div class="roll-log-modal-item-container">' +
+                  '<div class="roll-log-modal-item-left">&#8226&nbsp' +
                   roll_log.magic_item_tables[0].name + ' Roll</div>' +
-                  '<div class="roll-log-item-center">' + magic_item.dice + '</div>' +
-                  '<div class="roll-log-item-right">' + magic_item.rolls + '</div>' +
+                  '<div class="roll-log-modal-item-center">' + magic_item.dice + '</div>' +
+                  '<div class="roll-log-modal-item-right">' + magic_item.rolls + '</div>' +
                 '</div>'
               )
             })

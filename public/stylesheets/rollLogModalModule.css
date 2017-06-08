@@ -11,41 +11,36 @@
   overflow-x: hidden;
 }
 
-.roll-log-item-container {
+.roll-log-modal-item-container {
   display: flex;
 
   justify-content: space-between;
   margin: 0 0 10px 0;
 }
 
-.roll-log-header {
+.roll-log-modal-header {
   font-weight: bold;
   font-size: 1.1em;
   text-align: center;
 }
 
-.roll-log-item-left {
+.roll-log-modal-item-left {
   width: 32%;
   text-align: left;
 }
 
-.roll-log-item-center {
+.roll-log-modal-item-center {
   width: 32%;
   text-align: center;
 }
 
-.roll-log-item-right {
+.roll-log-modal-item-right {
   width: 32%;
   text-align: right;
 }
 
-.roll-log-item-divider {
+.roll-log-modal-item-divider {
   width: 100%;
   border: 1px dashed white;
   margin: 0 0 10px 0;
-}
-
-.roll-log-container:last-child {
-  border-bottom: 2px solid white;
-  padding-bottom: 15px;
 }
