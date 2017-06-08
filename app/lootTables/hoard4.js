@@ -118,7 +118,7 @@ module.exports = () => {
         pp: null
       },
       gemstones: null,
-      artobjects: null,
+      art_objects: null,
       hoard_table: null,
       magic_item_tables: []
     }

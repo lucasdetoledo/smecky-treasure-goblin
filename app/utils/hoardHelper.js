@@ -36,7 +36,7 @@ module.exports = () => {
     r = Dicebag.roll(die_type, die_count, { verbose: true })
     p = []
 
-    roll_log.artobjects = { dice: `${die_count}d${die_type}`, rolls: r.roll_log }
+    roll_log.art_objects = { dice: `${die_count}d${die_type}`, rolls: r.roll_log }
     for (let i = 0; i < r.sum; ++i) {
       p.push(RequestPromise.get(MagicItemHelper.formatGet(`artobjects?value=${value}`)))
     }
