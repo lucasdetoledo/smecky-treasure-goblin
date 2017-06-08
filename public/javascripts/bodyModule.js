@@ -52,7 +52,7 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
   var config, init, set_jquery_map, type_dropdown_click, type_dropdown_horde_click,
     type_dropdown_individual_click, level_dropdown_click, level_dropdown_four_click,
     level_dropdown_etc_click, setLootList, toggleInfoDropdown, setDropdownErrorColor,
-    resetDropdownErrorColor
+    resetDropdownErrorColor, add_loot_item
   // ----------------------------------------------------------------------------------end
 
   // ----------------------------------------------------------------------Private Methods
@@ -73,6 +73,15 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
       $body_level_dropdown_etc: $container.find('#body-level-dropdown-etc'),
       $body_loot_list_container: $container.find('#body-loot-list-container')
     }
+  }
+
+  add_loot_item = function (item, val) {
+    jqueryMap.$body_loot_list_container.append(
+      '<div class="body-loot-item-container">' +
+      '<div class="body-loot-item">&#8226&nbsp' + item + '</div>' +
+      '<div class="body-loot-item">' + val + '</div>' +
+      '</div>'
+    )
   }
   // ----------------------------------------------------------------------------------end
 
@@ -156,67 +165,34 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
     jqueryMap.$body_loot_list_container.append('<div class="body-loot-header">Coins</div>')
     jqueryMap.$body_loot_list_container.append('<div class="body-loot-item-divider"></div>')
     if (loot_list.coins.cp) {
-      jqueryMap.$body_loot_list_container.append(
-        '<div class="body-loot-item-container">' +
-          '<div class="body-loot-item">&#8226&nbspCopper Pieces</div>' +
-          '<div class="body-loot-item">' + loot_list.coins.cp + '</div>' +
-        '</div>'
-      )
+      add_loot_item('Copper Pieces', loot_list.coins.cp)
     }
     if (loot_list.coins.sp) {
-      jqueryMap.$body_loot_list_container.append(
-        '<div class="body-loot-item-container">' +
-        '<div class="body-loot-item">&#8226&nbspSilver Pieces</div>' +
-        '<div class="body-loot-item">' + loot_list.coins.sp + '</div>' +
-        '</div>'
-      )
+      add_loot_item('Silver Pieces', loot_list.coins.sp)
     }
     if (loot_list.coins.ep) {
-      jqueryMap.$body_loot_list_container.append(
-        '<div class="body-loot-item-container">' +
-        '<div class="body-loot-item">&#8226&nbspElectrum Pieces</div>' +
-        '<div class="body-loot-item">' + loot_list.coins.ep + '</div>' +
-        '</div>'
-      )
+      add_loot_item('Electrum Pieces', loot_list.coins.ep)
     }
     if (loot_list.coins.gp) {
-      jqueryMap.$body_loot_list_container.append(
-        '<div class="body-loot-item-container">' +
-        '<div class="body-loot-item">&#8226&nbspGold Pieces</div>' +
-        '<div class="body-loot-item">' + loot_list.coins.gp + '</div>' +
-        '</div>'
-      )
+      add_loot_item('Gold Pieces', loot_list.coins.gp)
     }
     if (loot_list.coins.pp) {
-      jqueryMap.$body_loot_list_container.append(
-        '<div class="body-loot-item-container">' +
-        '<div class="body-loot-item">&#8226&nbspPlatinum Pieces</div>' +
-        '<div class="body-loot-item">' + loot_list.coins.pp + '</div>' +
-        '</div>'
-      )
+      add_loot_item('Platinum Pieces', loot_list.coins.gp)
     }
     if (loot_list.gemstones.length > 0) {
       jqueryMap.$body_loot_list_container.append('<div class="body-loot-header">Gemstones</div>')
       jqueryMap.$body_loot_list_container.append('<div class="body-loot-item-divider"></div>')
+
       for (var i = 0; i < loot_list.gemstones.length; ++i) {
-        jqueryMap.$body_loot_list_container.append(
-          '<div class="body-loot-item-container">' +
-          '<div class="body-loot-item">&#8226&nbsp' + loot_list.gemstones[i].description + '</div>' +
-          '<div class="body-loot-item">' + loot_list.gemstones[i].value + 'gp</div>' +
-          '</div>'
-        )
+        add_loot_item(loot_list.gemstones[i].description, loot_list.gemstones[i].value + 'gp')
       }
     }
     if (loot_list.art_objects.length > 0) {
       jqueryMap.$body_loot_list_container.append('<div class="body-loot-header">Art Objects</div>')
       jqueryMap.$body_loot_list_container.append('<div class="body-loot-item-divider"></div>')
+
       for (i = 0; i < loot_list.art_objects.length; ++i) {
-        jqueryMap.$body_loot_list_container.append(
-          '<div class="body-loot-item-container">' +
-          '<div class="body-loot-item">&#8226&nbsp' + loot_list.art_objects[i].description + '</div>' +
-          '<div class="body-loot-item">' + loot_list.art_objects[i].value + 'gp</div>' +
-          '</div>'
-        )
+        add_loot_item(loot_list.art_objects[i].description, loot_list.art_objects[i].value + 'gp')
       }
     }
     if (loot_list.magic_items.length > 0) {

@@ -34,7 +34,11 @@ var modalModule = (function () { // eslint-disable-line no-unused-vars
     if (jqueryMap.$roll_log_modal && jqueryMap.$roll_log_modal.width() > 0) {
       return retractRollLogAsync()
     } else {
-      return extendRollLogAsync()
+      if (dataManager.get('loot_list')) {
+        return extendRollLogAsync()
+      } else {
+        return Promise.resolve(true)
+      }
     }
   }
 
