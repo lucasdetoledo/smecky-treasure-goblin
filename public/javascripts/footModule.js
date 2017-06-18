@@ -55,6 +55,10 @@ var footModule = (function () { // eslint-disable-line no-unused-vars
   }
 
   roll_log_click = function () {
+    if (!dataManager.get('loot_list')) {
+      jqueryMap.$foot_submit_button.css('color', 'red')
+      return
+    }
     PubSub.publish('foot_log_click', {})
   }
 
@@ -82,6 +86,6 @@ var footModule = (function () { // eslint-disable-line no-unused-vars
   return {
     config: config,
     init: init,
-    resetSubmitButtonErrorColor: resetSubmitButtonErrorColor
+    resetSubmitButtonErrorColor: resetSubmitButtonErrorColor,
   }
 }())

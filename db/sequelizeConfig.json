@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": null,
-    "database": "smeckyhoarder",
+    "database": "treasuregoblin",
     "host": "127.0.0.1",
     "port": "3610",
     "dialect": "postgres"

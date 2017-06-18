@@ -24,3 +24,11 @@
   align-items: center;
   justify-content: center;
 }
+
+#foot-submit-button:active {
+  font-size: 1.3em;
+}
+
+#foot-roll-log-button:active {
+  font-size: 1.3em;
+}

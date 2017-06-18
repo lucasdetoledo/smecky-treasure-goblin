@@ -46,8 +46,6 @@ var rollLogModalModule = (function () { // eslint-disable-line no-unused-vars
     } else {
       if (dataManager.get('loot_list')) {
         return extendRollLogAsync()
-      } else {
-        return Promise.resolve(true)
       }
     }
   }
