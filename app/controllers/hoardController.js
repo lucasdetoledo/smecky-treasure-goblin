@@ -3,6 +3,7 @@ const AppRoot = require('app-root-path')
 const Logger = require('winston')
 const Hoard4 = require(`${AppRoot}/app/lootTables/hoard4`)()
 const Hoard10 = require(`${AppRoot}/app/lootTables/hoard10`)()
+const Hoard16 = require(`${AppRoot}/app/lootTables/hoard16`)()
 
 exports.get = (req, res, next) => {
   Logger.log('info', '+ hoardController.get')
@@ -19,6 +20,7 @@ exports.get = (req, res, next) => {
       hoard = Hoard10
       break
     case '16':
+      hoard = Hoard16
       break
     case '17':
       break

@@ -10,6 +10,10 @@
 
 #foot-roll-log-button {}
 
+#foot-download-button {
+  visibility: hidden;
+}
+
 #foot-button-container {
   width: 100%;
   height: 100%;

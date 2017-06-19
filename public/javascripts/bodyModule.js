@@ -25,6 +25,7 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
           '<div id="body-level-dropdown-content" style="display:none" class="body-dropdown-content">' +
             '<div id="body-level-dropdown-four" class="body-type-dropdown-item">0 - 4</div>' +
             '<div id="body-level-dropdown-ten" class="body-type-dropdown-item">5 - 10</div>' +
+            '<div id="body-level-dropdown-sixteen" class="body-type-dropdown-item">11 - 16</div>' +
           '</div>' +
         '</div>' +
       '</div>' +
@@ -47,12 +48,13 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
     $body_level_dropdown_content: null,
     $body_level_dropdown_four: null,
     $body_level_dropdown_ten: null,
+    $body_level_dropdown_sixteen: null,
     $body_loot_list_container: null
   }
   var config, init, set_jquery_map, type_dropdown_click, type_dropdown_horde_click,
     type_dropdown_individual_click, level_dropdown_click, level_dropdown_four_click,
     level_dropdown_ten_click, setLootList, setDropdownErrorColor,
-    resetDropdownErrorColor, add_loot_item, add_magic_item
+    resetDropdownErrorColor, add_loot_item, add_magic_item, level_dropdown_sixteen_click
   // ----------------------------------------------------------------------------------end
 
   // ----------------------------------------------------------------------Private Methods
@@ -71,6 +73,7 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
       $body_level_dropdown_content: $container.find('#body-level-dropdown-content'),
       $body_level_dropdown_four: $container.find('#body-level-dropdown-four'),
       $body_level_dropdown_ten: $container.find('#body-level-dropdown-ten'),
+      $body_level_dropdown_sixteen: $container.find('#body-level-dropdown-sixteen'),
       $body_loot_list_container: $container.find('#body-loot-list-container')
     }
   }
@@ -210,6 +213,12 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
     stateManager.set('level', '10')
     PubSub.publish('validate_submit_button')
   }
+
+  level_dropdown_sixteen_click = function () {
+    jqueryMap.$body_level_dropdown_placeholder.html('11 - 16')
+    stateManager.set('level', '16')
+    PubSub.publish('validate_submit_button')
+  }
   // ----------------------------------------------------------------------------------end
 
   // -----------------------------------------------------------------------Public Methods
@@ -283,6 +292,7 @@ var bodyModule = (function () { // eslint-disable-line no-unused-vars
     jqueryMap.$body_level_dropdown_container.on('click', level_dropdown_click)
     jqueryMap.$body_level_dropdown_four.on('click', level_dropdown_four_click)
     jqueryMap.$body_level_dropdown_ten.on('click', level_dropdown_ten_click)
+    jqueryMap.$body_level_dropdown_sixteen.on('click', level_dropdown_sixteen_click)
   }
   // ----------------------------------------------------------------------------------end
   return {

@@ -1,7 +1,11 @@
 'use strict'
+const AppRoot = require('app-root-path')
 const Gulp = require('gulp')
+const Babel = require('gulp-babel')
+const Pump = require('pump')
 const Nodemon = require('gulp-nodemon')
 const GulpMocha = require('gulp-mocha')
+const Uglify = require('gulp-uglify')
 const Env = require('gulp-env')
 
 const jsFiles = ['*.js', 'app/**/*.js']
@@ -25,6 +29,15 @@ Gulp.task('set-Env', () => {
     file: '.env',
     type: 'ini'
   })
+})
+
+Gulp.task('uglify', (cb) => {
+  Pump([
+    Gulp.src(`${AppRoot}/public/javascripts/**/*.js`),
+    Babel({ presets: ['es2015'] }),
+    Uglify(),
+    Gulp.dest(`${AppRoot}/public/javascripts/dar`)
+  ], cb)
 })
 
 Gulp.task('serve', [ 'set-Env' ], () => {
